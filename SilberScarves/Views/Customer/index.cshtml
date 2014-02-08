@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SilberScarves.Models.Customer>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Customers </h2>
+@foreach (SilberScarves.Models.Customer c in @Model)
+{
+    <ul>
+        <li> @c.firstName @c.lastName</li>
+        <li> @c.phone</li>
+        <ul>
+            <li> @c.address.buildingNumber @c.address.street @if (@c.address.apartmentNumber != null) { @c.address.apartmentNumber } </li>
+            <li> @c.address.city, @c.address.stateCode @c.address.zipCode </li>                                                                                                
+        </ul>
+      
+    </ul>
+}
+
