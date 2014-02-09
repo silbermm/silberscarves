@@ -1,0 +1,17 @@
+﻿@model SilberScarves.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm())
+{
+    if (ViewBag.Error != null) { @Html.Raw(ViewBag.Error); <br /> }
+    
+    @Html.LabelFor(m => m.username); @Html.TextBoxFor(m => m.username); <br />
+    @Html.LabelFor(m => m.password); @Html.TextBoxFor(m => m.password); <br />
+    
+    <button type="submit">Login</button>
+                                            
+}

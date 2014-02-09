@@ -112,16 +112,34 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201402030323454_InitialCreate.resx">
+      <DependentUpon>201402030323454_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402081849204_AddUsernamePasswordToCustomer.resx">
+      <DependentUpon>201402081849204_AddUsernamePasswordToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402030323454_InitialCreate.cs" />
+    <Compile Include="Migrations\201402030323454_InitialCreate.Designer.cs">
+      <DependentUpon>201402030323454_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402081849204_AddUsernamePasswordToCustomer.cs" />
+    <Compile Include="Migrations\201402081849204_AddUsernamePasswordToCustomer.Designer.cs">
+      <DependentUpon>201402081849204_AddUsernamePasswordToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressRepository.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -167,8 +185,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Scarves.cshtml" />
     <Content Include="Views\Customer\index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
