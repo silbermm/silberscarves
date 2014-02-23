@@ -1,16 +1,32 @@
-﻿@model IEnumerable<SilberScarves.Models.ScarfItem>
+﻿@model SilberScarves.Models.CustomerAndProducts
 
 @{
     ViewBag.Title = "Scarves";
 }
 
 <h2>Scarves</h2>
-@Html.ActionLink("Create a new Scarf", "Create", "Products"); <br />
-@foreach (SilberScarves.Models.ScarfItem item in @Model)
+<div class="row" data-ng-controller="ProductsCtrl">
+    @if (HttpContext.Current.User.Identity.IsAuthenticated && @Model.Customer.isAdmin)
+    {
+        @Html.ActionLink("Create a new Scarf", "Create", "Products"); <br />
+    }
+    @foreach(SilberScarves.Models.ScarfItem item in @Model.Scarves)
 {
-    <ul>
-        <li> @item.name </li>
-        <li> @item.description</li>
-        <li> @item.price </li>
-    </ul>
+    <div class="col-md-4" >
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.name</h3>
+            </div>
+            <div class="panel-body">
+                @item.description
+                <br />               
+            </div>
+            <div class="panel-footer">
+                    <button data-ng-click="addToCart('@item.name', '@item.price', 1)" class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+                    <span class="pull-right"> $@item.price </span>
+            </div>
+
+        </div>
+    </div>
 }
+</div>

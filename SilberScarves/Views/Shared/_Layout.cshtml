@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="silberscarves">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +21,34 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Products", "Index", "Products")</li>                
+                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
                 </ul>
-                <ul class="pull-right">@Html.ActionLink("Login", "Login", "Auth")</ul>
+                <ul class="nav navbar-nav navbar-right" >
+                    <li>
+
+
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <p class="navbar-text"> Welcome @Html.Raw(User.Identity.Name) | @Html.ActionLink("Logout", "Logout", "Auth") </p> 
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Login", "Login", "Auth");
+
+                        }
+                    </li>
+                    
+                </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
+        @if (TempData["GlobalError"] != null)
+        {
+            <div class="alert alert-danger">
+                <strong> Warning! </strong> @TempData["GlobalError"]
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>
@@ -37,6 +58,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/app.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

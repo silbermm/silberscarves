@@ -61,3 +61,7 @@ D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberSc
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.InitialCreate.resources
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.csproj.GenerateResource.Cache
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.AddUsernamePasswordToCustomer.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.AddAdministratorTable.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.adminTable.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addIsAdminToCustomer.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addOrderTable.resources

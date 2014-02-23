@@ -23,7 +23,7 @@ namespace SilberScarves.Models
         public String password { get; set; }
         public int addressId { get; set; }
         public String phone { get; set; }
-
+        public bool isAdmin { get; set; }
         public Address address { get; set; }
     }
 }

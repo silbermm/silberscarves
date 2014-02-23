@@ -11,6 +11,7 @@ namespace SilberScarves.Controllers
     {
         //
         // GET: /Customer/
+        [Authorize]
         public ActionResult Index()
         {
             Repository<Customer> customerRepo = new CustomerRepository(); 
