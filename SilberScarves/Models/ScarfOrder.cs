@@ -8,17 +8,22 @@ using System.Web;
 namespace SilberScarves.Models
 {
     [Table("Orders")]
-    public class Order
+    public class ScarfOrder
     {
 
-        public Order(){
+        public ScarfOrder(){
             customer = new Customer();
+            Scarves = new HashSet<ScarfItem>();
         }
 
         [Key]
         public long orderId { get; set; }
+        public bool isCart { get; set; }
         public bool hasShipped { get; set; }
         public bool hasBeenPaidFor { get; set; }
+      
+        public virtual ICollection<ScarfItem> Scarves { get; set; }
+
         public Customer customer { get; set; }
 
     }

@@ -12,6 +12,7 @@
     }
     @foreach(SilberScarves.Models.ScarfItem item in @Model.Scarves)
 {
+    
     <div class="col-md-4" >
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -22,11 +23,17 @@
                 <br />               
             </div>
             <div class="panel-footer">
-                    <button data-ng-click="addToCart('@item.name', '@item.price', 1)" class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+                @using (Html.BeginForm()) { 
+                    
+                    <input type="hidden" name="scarfId" value="@item.scarfId" />
+                   <!-- <button data-ng-click="addToCart('@item.scarfId', '@item.name', '@item.description', '@item.price', 1)" class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>  -->
+                    <button class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
                     <span class="pull-right"> $@item.price </span>
+                }
             </div>
 
         </div>
     </div>
+        
 }
 </div>

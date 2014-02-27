@@ -1,4 +1,5 @@
 ﻿using SilberScarves.Models;
+using SilberScarves.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,15 @@ namespace SilberScarves.Controllers
     public class ProductsController : Controller
     {
 
-        private Repository<ScarfItem> scarfRepo = new ScarfItemRepository();
+        private static SilberScarvesDbContext context = new SilberScarvesDbContext();
+
+        private Repository<ScarfItem> scarfRepo = new ScarfItemRepository(context);
         private Repository<Customer> custRepo = new CustomerRepository();
+        private OrderRepository orderRepo = new OrderRepository(context);
 
         //
         // GET: /Products/
+        [HttpGet]
         public ActionResult Index()
         { 
             IEnumerable<ScarfItem> scarves = scarfRepo.getAll();            
@@ -48,7 +53,55 @@ namespace SilberScarves.Controllers
             Customer c = getCurrentUser();
             if (c != null && c.isAdmin)
             {
-                return View();
+                ScarfItem scarf = new ScarfItem();
+
+                bool error = false;
+
+                if (name == null || name.Equals(""))
+                {
+                    Console.Out.WriteLine("name is null or empty");
+                    ViewBag.ErrorName = "name is required";
+                    error = true;
+                }
+                else
+                {
+                    scarf.name = name;
+                }
+                if (description == null || description.Equals(""))
+                {
+                    ViewBag.ErrorDescription = "description is required"; error = true;
+                }
+                else
+                {
+                    scarf.description = description;
+                }
+                if (price == null || price.Equals(""))
+                {
+                    ViewBag.ErrorPrice = "price is required"; error = true;
+                }
+                else
+                {
+                    try
+                    {
+                        scarf.price = decimal.Parse(price);
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.ErrorPrice = e.Message;
+                        error = true;
+                    }
+                }
+                if (error)
+                {
+                    ViewBag.Error = "Please fill out all required fields";
+                    return View(scarf);
+                }
+                else
+                {
+                    // Insert the data and return to the Index view
+                    scarfRepo.add(scarf);
+                    return View("Index", scarfRepo.getAll());
+                }
             }
             else
             {
@@ -57,65 +110,45 @@ namespace SilberScarves.Controllers
             }
 
 
-            ScarfItem scarf = new ScarfItem();
-
-            bool error = false;
-
-            if (name == null || name.Equals(""))
-            {
-                Console.Out.WriteLine("name is null or empty");
-                ViewBag.ErrorName = "name is required"; 
-                error = true;
-            }
-            else
-            {
-                scarf.name = name;
-            }
-            if (description == null || description.Equals(""))
-            {
-                ViewBag.ErrorDescription = "description is required"; error = true;
-            }
-            else
-            {
-                scarf.description = description;
-            }
-            if (price == null || price.Equals(""))
-            {
-                ViewBag.ErrorPrice = "price is required"; error = true;
-            }
-            else
-            {
-                try
-                {
-                    scarf.price = decimal.Parse(price);
-                }catch (Exception e){
-                    ViewBag.ErrorPrice = e.Message;
-                    error = true;
-                }
-            }
-            if (error)
-            {
-                ViewBag.Error = "Please fill out all required fields";
-                return View(scarf);
-            }
-            else
-            {
-                // Insert the data and return to the Index view
-                scarfRepo.add(scarf);
-                return View("Index", scarfRepo.getAll());
-            }
+            
 
         }
 
         [HttpPost]
-        public ActionResult AddToCart(String jsonObject)
-        {            
-            Response.StatusCode = 400; // Replace .AddHeader
-            var error = new Error();  // Create class Error() w/ prop
-            error.Level = 2;
-            error.Message = jsonObject;
-            return Json(error, JsonRequestBehavior.AllowGet);
+        public ActionResult Index(long scarfId)
+        {
+            Customer c = getCurrentUser();
+            if (c == null)
+            {
+                // set an error message and return to view
+                ViewBag.Error = "Please Login to add items to your cart!";
 
+            }
+            else
+            {
+                // user is logged in, lets add this item to their cart...
+                var cart = orderRepo.getCustomerCart(c);
+                if (cart != null)
+                {
+                    ScarfItem scarf = scarfRepo.getById(scarfId);
+                    cart.Scarves.Add(scarf);
+                }
+                else
+                {
+                    ScarfOrder newOrder = new ScarfOrder(){ isCart = true, customer=c, hasBeenPaidFor=false, hasShipped =false };
+                    ScarfItem scarf = scarfRepo.getById(scarfId);
+                    newOrder.Scarves.Add(scarf);
+                    orderRepo.add(newOrder);
+
+
+                }
+
+            }
+
+            var CandP = new CustomerAndProducts();
+            CandP.Customer = getCurrentUser();
+            CandP.Scarves = scarfRepo.getAll();
+            return View(CandP);
         }
 
         private Customer getCurrentUser()

@@ -3,7 +3,7 @@ namespace SilberScarves.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addOrderTable : DbMigration
+    public partial class removeorder : DbMigration
     {
         public override void Up()
         {

@@ -9,6 +9,10 @@ namespace SilberScarves.Controllers
 {
     public class HomeController : Controller
     {
+
+        private static SilberScarvesDbContext context = new SilberScarvesDbContext();
+        Repository<ScarfItem> scarfRepo = new ScarfItemRepository(context);
+
         public ActionResult Index()
         {
             return View();
@@ -30,7 +34,7 @@ namespace SilberScarves.Controllers
 
         public ActionResult Scarves()
         {
-            Repository<ScarfItem> scarfRepo = new ScarfItemRepository();
+            
             IEnumerable<ScarfItem> scarves = scarfRepo.getAll();
             return View(scarves);
         }

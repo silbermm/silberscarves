@@ -7,13 +7,13 @@ namespace SilberScarves.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class addOrderTable2 : IMigrationMetadata
+    public sealed partial class removeordersagain : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addOrderTable2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removeordersagain));
         
         string IMigrationMetadata.Id
         {
-            get { return "201402231913535_addOrderTable2"; }
+            get { return "201402270329361_remove orders again"; }
         }
         
         string IMigrationMetadata.Source

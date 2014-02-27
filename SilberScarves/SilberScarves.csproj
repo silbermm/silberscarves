@@ -128,11 +128,14 @@
     <EmbeddedResource Include="Migrations\201402231626528_addIsAdminToCustomer.resx">
       <DependentUpon>201402231626528_addIsAdminToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201402231911354_addOrderTable.resx">
-      <DependentUpon>201402231911354_addOrderTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201402270250228_remove order.resx">
+      <DependentUpon>201402270250228_remove order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201402231913535_addOrderTable2.resx">
-      <DependentUpon>201402231913535_addOrderTable2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201402270329361_remove orders again.resx">
+      <DependentUpon>201402270329361_remove orders again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402270345257_not sure what changed.resx">
+      <DependentUpon>201402270345257_not sure what changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -141,13 +144,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Migrations\201402231911354_addOrderTable.cs" />
-    <Compile Include="Migrations\201402231911354_addOrderTable.Designer.cs">
-      <DependentUpon>201402231911354_addOrderTable.cs</DependentUpon>
+    <Compile Include="Migrations\201402270250228_remove order.cs" />
+    <Compile Include="Migrations\201402270250228_remove order.Designer.cs">
+      <DependentUpon>201402270250228_remove order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201402231913535_addOrderTable2.cs" />
-    <Compile Include="Migrations\201402231913535_addOrderTable2.Designer.cs">
-      <DependentUpon>201402231913535_addOrderTable2.cs</DependentUpon>
+    <Compile Include="Migrations\201402270329361_remove orders again.cs" />
+    <Compile Include="Migrations\201402270329361_remove orders again.Designer.cs">
+      <DependentUpon>201402270329361_remove orders again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402270345257_not sure what changed.cs" />
+    <Compile Include="Migrations\201402270345257_not sure what changed.Designer.cs">
+      <DependentUpon>201402270345257_not sure what changed.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Error.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,8 +186,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\CustomerAndProducts.cs" />
-    <Compile Include="Models\LineItem.cs" />
-    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ScarfOrder.cs" />
     <Compile Include="Models\Repository\AddressRepository.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Repository\CustomerRepository.cs" />
