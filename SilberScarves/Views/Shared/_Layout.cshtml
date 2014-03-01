@@ -28,7 +28,7 @@
 
 
                         @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                        {
+                        {                         
                             <p class="navbar-text"> Welcome @Html.Raw(User.Identity.Name) | @Html.ActionLink("Logout", "Logout", "Auth") </p> 
                         }
                         else

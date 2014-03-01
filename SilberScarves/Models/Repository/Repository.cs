@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SilberScarves.Models
 {
-    interface Repository<T>
+    public interface Repository<T>
     {
         IEnumerable<T> getAll();
         T getById(long id);

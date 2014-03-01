@@ -9,6 +9,8 @@ namespace SilberScarves.Models
     {
         public Customer Customer {get; set;}
         public IEnumerable<ScarfItem> Scarves { get; set; }
+        public ScarfOrder Cart { get; set; } 
+            
         
     }
 }

@@ -4,7 +4,33 @@
     ViewBag.Title = "Scarves";
 }
 
-<h2>Scarves</h2>
+
+
+<h2>
+    Scarves
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <span class="glyphicon glyphicon-shopping-cart"> </span> 
+       
+        <span class="label label-info"> 
+        @if(@Model.Cart.Scarves == null) { 
+            Html.Raw(0);
+        }
+        else
+        {
+            Html.Raw(@Model.Cart.Scarves.Count);
+        } 
+        </span>
+    }
+</h2>
+
+@if (ViewBag.Error != null)
+    {
+<div class="alert alert-danger">
+    <strong> Warning! </strong> @ViewBag.Error
+</div>
+    }
+
 <div class="row" data-ng-controller="ProductsCtrl">
     @if (HttpContext.Current.User.Identity.IsAuthenticated && @Model.Customer.isAdmin)
     {

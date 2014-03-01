@@ -1,5 +1,6 @@
 ﻿using SilberScarves.Models;
 using SilberScarves.Models.Repository;
+using SilberScarves.services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,20 @@ namespace SilberScarves.Controllers
     public class ProductsController : Controller
     {
 
-        private static SilberScarvesDbContext context = new SilberScarvesDbContext();
-
-        private Repository<ScarfItem> scarfRepo = new ScarfItemRepository(context);
-        private Repository<Customer> custRepo = new CustomerRepository();
-        private OrderRepository orderRepo = new OrderRepository(context);
+        ProductsService service = new ProductsService();
 
         //
         // GET: /Products/
         [HttpGet]
         public ActionResult Index()
-        { 
-            IEnumerable<ScarfItem> scarves = scarfRepo.getAll();            
+        {
+            IEnumerable<ScarfItem> scarves = service.scarfRepo.getAll();
+            Customer customer = getCurrentUser();
+
             var CandP = new CustomerAndProducts();
-            CandP.Customer = getCurrentUser();
+            CandP.Customer = customer;
+            ScarfOrder s = service.orderRepo.getCustomerCart(customer);
+            CandP.Cart = service.orderRepo.getCustomerCart(customer);
             CandP.Scarves = scarves;
             return View(CandP);
         }
@@ -99,8 +100,16 @@ namespace SilberScarves.Controllers
                 else
                 {
                     // Insert the data and return to the Index view
-                    scarfRepo.add(scarf);
-                    return View("Index", scarfRepo.getAll());
+                    service.scarfRepo.add(scarf);
+
+                    IEnumerable<ScarfItem> scarves = service.scarfRepo.getAll();
+                    Customer customer = getCurrentUser();
+                    var CandP = new CustomerAndProducts();
+                    CandP.Customer = customer;
+                    CandP.Cart = service.orderRepo.getCustomerCart(customer);
+                    CandP.Scarves = scarves;
+                    
+                    return View("Index", CandP);
                 }
             }
             else
@@ -127,18 +136,18 @@ namespace SilberScarves.Controllers
             else
             {
                 // user is logged in, lets add this item to their cart...
-                var cart = orderRepo.getCustomerCart(c);
+                var cart = service.orderRepo.getCustomerCart(c);
                 if (cart != null)
                 {
-                    ScarfItem scarf = scarfRepo.getById(scarfId);
+                    ScarfItem scarf = service.scarfRepo.getById(scarfId);
                     cart.Scarves.Add(scarf);
                 }
                 else
                 {
                     ScarfOrder newOrder = new ScarfOrder(){ isCart = true, customer=c, hasBeenPaidFor=false, hasShipped =false };
-                    ScarfItem scarf = scarfRepo.getById(scarfId);
+                    ScarfItem scarf = service.scarfRepo.getById(scarfId);
                     newOrder.Scarves.Add(scarf);
-                    orderRepo.add(newOrder);
+                    service.orderRepo.add(newOrder);
 
 
                 }
@@ -147,7 +156,7 @@ namespace SilberScarves.Controllers
 
             var CandP = new CustomerAndProducts();
             CandP.Customer = getCurrentUser();
-            CandP.Scarves = scarfRepo.getAll();
+            CandP.Scarves = service.scarfRepo.getAll();
             return View(CandP);
         }
 
@@ -156,7 +165,7 @@ namespace SilberScarves.Controllers
             Customer cust = null;
             if (this.HttpContext.User.Identity.IsAuthenticated)
             {
-                cust = custRepo.getAll().Where(c => c.username == this.HttpContext.User.Identity.Name).FirstOrDefault();
+                cust = service.custRepo.getAll().Where(c => c.username == this.HttpContext.User.Identity.Name).FirstOrDefault();
                 return cust;
             }
             else
