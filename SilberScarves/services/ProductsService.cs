@@ -10,21 +10,105 @@ namespace SilberScarves.services
     public class ProductsService
     {
 
-        private SilberScarvesDbContext context { get; set; }
-        public Repository<ScarfItem> scarfRepo { get; set; }
-        public Repository<Customer> custRepo { get; set; }
-        public OrderRepository orderRepo { get; set; }
+        private SilberScarvesDbContext _context;
+        private Repository<ScarfItem> _scarfRepo;
+        private Repository<Customer> _custRepo;
+        private OrderRepository _orderRepo;
 
 
         public ProductsService()
         {
-            context = new SilberScarvesDbContext();
-            scarfRepo = new ScarfItemRepository(context);
-            custRepo = new CustomerRepository();
-            orderRepo = new OrderRepository(context);
+            _context = new SilberScarvesDbContext();
+            _scarfRepo = new ScarfItemRepository(_context);
+            _custRepo = new CustomerRepository(_context);
+            _orderRepo = new OrderRepository(_context);
 
         }
 
+        public ScarfOrder getCustomerCart(Customer customer){
+            ScarfOrder s;
+
+            if (customer == null)
+            {
+                s = EmptyCart();
+            }
+            else
+            {
+                s = _orderRepo.getCustomerCart(customer);
+                if (s == null)
+                {
+                    s = EmptyCart(customer);
+                    _orderRepo.add(s);
+                }
+            }
+            return s;
+        }
+
+        public IEnumerable<ScarfOrder> getCustomerOrders(Customer customer)
+        {
+            List <ScarfOrder> s;
+            if (customer == null)
+            {
+                s = new List<ScarfOrder>();
+                ScarfOrder emptyOrder = EmptyCart();
+                emptyOrder.isCart = false;
+                s.Add(emptyOrder);
+            }
+            else
+            {
+                s = _orderRepo.getAll().Where(o => o.customer == customer && o.isCart == false) as List<ScarfOrder>;
+                if(s == null || s.Count == 0)
+                {
+                    s = new List<ScarfOrder>(0);
+                    ScarfOrder order  = EmptyCart(customer);
+                    order.isCart = false;
+                    
+                    _orderRepo.add(order);
+                    s.Add(order);
+                }
+            }
+            return s;
+        }
+
+        public IEnumerable<ScarfItem> getAllScarves()
+        {
+            return _scarfRepo.getAll();
+        }
+
+        public void addScarf(ScarfItem s)
+        {
+            _scarfRepo.add(s);
+        }
+
+        public ScarfItem getScarf(long scarfId)
+        {
+            return _scarfRepo.getById(scarfId);
+        }
+
+        public void addOrder(ScarfOrder order)
+        {
+            _orderRepo.add(order);
+        }
+
+        public void updateOrder(ScarfOrder order)
+        {
+            _orderRepo.update(order);
+        }
+
+        public IEnumerable<Customer> getAllCustomers()
+        {
+            return _custRepo.getAll();
+        }
+
+        public Customer findCustomerByUsername(String customerName)
+        {
+            return _custRepo.getAll().Where(c => c.username == customerName).FirstOrDefault();
+        }
+
+        public ScarfOrder EmptyCart(Customer customer = null)
+        {
+            return new ScarfOrder() { isCart = true, hasBeenPaidFor = false, customer = customer, hasShipped = false, Scarves = new List<ScarfItem>(0) };
+        }
 
     }
 }

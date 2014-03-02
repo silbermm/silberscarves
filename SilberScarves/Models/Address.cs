@@ -7,10 +7,9 @@ using System.Web;
 
 namespace SilberScarves.Models
 {
+    [Table("Address")]
     public class Address
     {
-
-        public Address() { }
 
         [Key]
         public long addressId { get; set; }
@@ -20,6 +19,6 @@ namespace SilberScarves.Models
         public String city { get; set; }
         public String stateCode { get; set; }
         public String zipCode { get; set; }
-
+     
     }
 }

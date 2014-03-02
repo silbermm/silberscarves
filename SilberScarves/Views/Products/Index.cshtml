@@ -5,24 +5,28 @@
 }
 
 
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="pull-left"> Scarves </h2>
+    </div>
 
-<h2>
-    Scarves
-    @if (HttpContext.Current.User.Identity.IsAuthenticated)
-    {
-        <span class="glyphicon glyphicon-shopping-cart"> </span> 
-       
-        <span class="label label-info"> 
-        @if(@Model.Cart.Scarves == null) { 
-            Html.Raw(0);
-        }
-        else
-        {
-            Html.Raw(@Model.Cart.Scarves.Count);
-        } 
-        </span>
-    }
-</h2>
+    <div class="col-md-4">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <ul class="list-inline pull-right">
+            <li>
+                <a href="/customer/cart">
+                    <span class="glyphicon glyphicon-shopping-cart"> </span>
+                    <span class="badge">  @Html.Raw(Model.Cart.Scarves.Count) </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+}
+    </div>
+
+</div>
 
 @if (ViewBag.Error != null)
     {

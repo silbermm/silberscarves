@@ -105,3 +105,5 @@ D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\Sil
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\obj\Debug\SilberScarves.csproj.GenerateResource.Cache
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\obj\Debug\SilberScarves.dll
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\obj\Debug\SilberScarves.pdb
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\bin\Antlr3.Runtime.pdb
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.lopl.resources

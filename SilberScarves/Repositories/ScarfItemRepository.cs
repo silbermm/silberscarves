@@ -9,6 +9,11 @@ namespace SilberScarves.Models
     public class ScarfItemRepository : Repository<ScarfItem>
     {
 
+        public ScarfItemRepository()
+        {
+            context = new SilberScarvesDbContext();
+        }
+
         public ScarfItemRepository(SilberScarvesDbContext context)
         {
             this.context = context;

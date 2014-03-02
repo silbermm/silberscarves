@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -137,6 +139,9 @@
     <EmbeddedResource Include="Migrations\201402270345257_not sure what changed.resx">
       <DependentUpon>201402270345257_not sure what changed.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403011634104_lopl.resx">
+      <DependentUpon>201403011634104_lopl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -155,6 +160,10 @@
     <Compile Include="Migrations\201402270345257_not sure what changed.cs" />
     <Compile Include="Migrations\201402270345257_not sure what changed.Designer.cs">
       <DependentUpon>201402270345257_not sure what changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403011634104_lopl.cs" />
+    <Compile Include="Migrations\201403011634104_lopl.Designer.cs">
+      <DependentUpon>201403011634104_lopl.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Error.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,16 +196,17 @@
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\CustomerAndProducts.cs" />
     <Compile Include="Models\ScarfOrder.cs" />
-    <Compile Include="Models\Repository\AddressRepository.cs" />
+    <Compile Include="Repositories\AddressRepository.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Repository\CustomerRepository.cs" />
-    <Compile Include="Models\Repository\OrderRepository.cs" />
-    <Compile Include="Models\Repository\Repository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Models\ScarfItem.cs" />
-    <Compile Include="Models\Repository\ScarfItemRepository.cs" />
+    <Compile Include="Repositories\ScarfItemRepository.cs" />
     <Compile Include="Models\SilberScarvesDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="services\ProductsService.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\ProductsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SilberScarves-localDB.bk.mdf" />
@@ -512,6 +522,8 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Customer\Orders.cshtml" />
+    <Content Include="Views\Customer\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -549,6 +561,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

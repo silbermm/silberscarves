@@ -20,13 +20,12 @@ namespace SilberScarves.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ScarfItem> scarves = service.scarfRepo.getAll();
+            IEnumerable<ScarfItem> scarves = service.getAllScarves();
             Customer customer = getCurrentUser();
-
             var CandP = new CustomerAndProducts();
             CandP.Customer = customer;
-            ScarfOrder s = service.orderRepo.getCustomerCart(customer);
-            CandP.Cart = service.orderRepo.getCustomerCart(customer);
+            ScarfOrder s = service.getCustomerCart(customer);           
+            CandP.Cart = s;
             CandP.Scarves = scarves;
             return View(CandP);
         }
@@ -100,13 +99,13 @@ namespace SilberScarves.Controllers
                 else
                 {
                     // Insert the data and return to the Index view
-                    service.scarfRepo.add(scarf);
+                    service.addScarf(scarf);
 
-                    IEnumerable<ScarfItem> scarves = service.scarfRepo.getAll();
+                    IEnumerable<ScarfItem> scarves = service.getAllScarves();
                     Customer customer = getCurrentUser();
                     var CandP = new CustomerAndProducts();
                     CandP.Customer = customer;
-                    CandP.Cart = service.orderRepo.getCustomerCart(customer);
+                    CandP.Cart = service.getCustomerCart(customer);
                     CandP.Scarves = scarves;
                     
                     return View("Index", CandP);
@@ -127,46 +126,42 @@ namespace SilberScarves.Controllers
         public ActionResult Index(long scarfId)
         {
             Customer c = getCurrentUser();
+            ScarfOrder currentCart;
             if (c == null)
             {
                 // set an error message and return to view
                 ViewBag.Error = "Please Login to add items to your cart!";
-
+                currentCart = service.EmptyCart();
             }
             else
             {
                 // user is logged in, lets add this item to their cart...
-                var cart = service.orderRepo.getCustomerCart(c);
-                if (cart != null)
-                {
-                    ScarfItem scarf = service.scarfRepo.getById(scarfId);
-                    cart.Scarves.Add(scarf);
-                }
-                else
-                {
-                    ScarfOrder newOrder = new ScarfOrder(){ isCart = true, customer=c, hasBeenPaidFor=false, hasShipped =false };
-                    ScarfItem scarf = service.scarfRepo.getById(scarfId);
-                    newOrder.Scarves.Add(scarf);
-                    service.orderRepo.add(newOrder);
-
-
-                }
-
+                currentCart = service.getCustomerCart(c);
+                ScarfItem scarf = service.getScarf(scarfId);
+                currentCart.Scarves.Add(scarf);
+                service.updateOrder(currentCart);               
+                    /*
+                    currentCart = service.EmptyCart(c);
+                    ScarfItem scarf = service.getScarf(scarfId);
+                    currentCart.Scarves.Add(scarf);
+                    service.addOrder(currentCart);
+                     */                              
             }
 
             var CandP = new CustomerAndProducts();
-            CandP.Customer = getCurrentUser();
-            CandP.Scarves = service.scarfRepo.getAll();
+            CandP.Customer = c;
+            CandP.Scarves = service.getAllScarves();
+            CandP.Cart = currentCart;
             return View(CandP);
         }
+ 
 
         private Customer getCurrentUser()
         {
             Customer cust = null;
             if (this.HttpContext.User.Identity.IsAuthenticated)
             {
-                cust = service.custRepo.getAll().Where(c => c.username == this.HttpContext.User.Identity.Name).FirstOrDefault();
-                return cust;
+                return service.findCustomerByUsername(this.HttpContext.User.Identity.Name);
             }
             else
             {

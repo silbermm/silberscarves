@@ -11,6 +11,11 @@ namespace SilberScarves.Models.Repository
 
         public SilberScarvesDbContext context { get; set; }
 
+        public OrderRepository()
+        {
+            context = new SilberScarvesDbContext();
+        }
+
         public OrderRepository(SilberScarvesDbContext context){
             this.context = context;
         }
@@ -48,8 +53,7 @@ namespace SilberScarves.Models.Repository
 
         public ScarfOrder getCustomerCart(Customer customer)
         {
-            ScarfOrder order = context.Orders.Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();
-           
+            ScarfOrder order = context.Orders.Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();         
             return order;
             
         }

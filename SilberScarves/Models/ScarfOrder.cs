@@ -24,7 +24,7 @@ namespace SilberScarves.Models
       
         public virtual ICollection<ScarfItem> Scarves { get; set; }
 
-        public Customer customer { get; set; }
+        public virtual Customer customer { get; set; }
 
     }
 }

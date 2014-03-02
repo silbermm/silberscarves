@@ -1,4 +1,5 @@
 ﻿using SilberScarves.Models;
+using SilberScarves.services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SilberScarves.Controllers
     public class AuthController : Controller
     {
 
-        private Repository<Customer> customerRepo = new CustomerRepository();
+        private AccountService accountService = new AccountService();
 
         public ActionResult Index()
         {
@@ -28,7 +29,7 @@ namespace SilberScarves.Controllers
         [HttpPost]
         public ActionResult Login(String username, String password)
         {
-            Customer customer = customerRepo.getAll().Where(c => c.username == username).FirstOrDefault();
+            Customer customer = accountService.findCustomer(username);
             if (customer == null)
             {
                 ViewBag.Error = "Wrong username or password";

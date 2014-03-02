@@ -1,0 +1,42 @@
+﻿@model SilberScarves.Models.ScarfOrder
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+
+<div>
+    <h4>ScarfOrder</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.isCart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isCart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hasShipped)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hasShipped)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hasBeenPaidFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hasBeenPaidFor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.orderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
