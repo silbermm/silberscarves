@@ -107,3 +107,6 @@ D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\Sil
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\obj\Debug\SilberScarves.pdb
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\SilberscarvesClean\SilberScarves\bin\Antlr3.Runtime.pdb
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.lopl.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addforeignKeytocusteomr.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addUserandroles.resources
+D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.rolesandusers.resources

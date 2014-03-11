@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SilberScarves.Controllers
 {
-    public class HomeController : Controller
+    public class PublicController : Controller
     {
 
         private static SilberScarvesDbContext context = new SilberScarvesDbContext();

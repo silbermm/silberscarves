@@ -22,11 +22,13 @@ namespace SilberScarves.Models
         public String lastName { get; set; }
         public String username { get; set; }
         public String password { get; set; }
+
+        
         public long addressId { get; set; }
         public String phone { get; set; }
         public bool isAdmin { get; set; }
 
-        
+        [ForeignKey("addressId")]
         public virtual Address address { get; set; }
     }
 }

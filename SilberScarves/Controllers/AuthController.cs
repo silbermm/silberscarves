@@ -29,23 +29,32 @@ namespace SilberScarves.Controllers
         [HttpPost]
         public ActionResult Login(String username, String password)
         {
-            Customer customer = accountService.findCustomer(username);
-            if (customer == null)
-            {
-                ViewBag.Error = "Wrong username or password";
-                return View();
-            }
-            if (customer.password == password)
-            {
-                // successful!\
-                FormsAuthentication.SetAuthCookie(username, false);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ViewBag.Error = "Wrong username or password";
-                return View();
-            }
+            
+           SilberScarves.Models.Security.User user = accountService.findUser(username);
+           if (user != null)
+           {
+               if (user.Password == password)
+               {
+                   FormsAuthentication.SetAuthCookie(username, false);
+                   if (user.Roles.Where(r => r.Name == "admin").FirstOrDefault() != null)
+                   {
+                       return RedirectToAction("Index", "Home", new { Area = "Admin" });
+                   }
+
+                   
+                   return RedirectToAction("Index", "Public");
+               }
+               else
+               {
+                   ViewBag.Error = "Wrong username or password";
+                   return View();
+               }
+           }
+           else
+           {
+               ViewBag.Error = "Wrong username or password";
+               return View();
+           }         
             
         }
 
@@ -53,7 +62,7 @@ namespace SilberScarves.Controllers
         {
             //var username = this.HttpContext.User.Identity.Name;
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Public");
         }
 
 
