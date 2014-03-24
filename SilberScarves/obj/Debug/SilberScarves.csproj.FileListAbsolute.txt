@@ -110,3 +110,46 @@ D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberSc
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addforeignKeytocusteomr.resources
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addUserandroles.resources
 D:\Users\silbermm.UCLOUD.002\Documents\Visual Studio 2013\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.rolesandusers.resources
+C:\projects\silberscarves\SilberScarves\bin\SilberScarves.dll.config
+C:\projects\silberscarves\SilberScarves\bin\SilberScarves.dll
+C:\projects\silberscarves\SilberScarves\bin\SilberScarves.pdb
+C:\projects\silberscarves\SilberScarves\bin\Antlr3.Runtime.dll
+C:\projects\silberscarves\SilberScarves\bin\EntityFramework.dll
+C:\projects\silberscarves\SilberScarves\bin\EntityFramework.SqlServer.dll
+C:\projects\silberscarves\SilberScarves\bin\Microsoft.Web.Infrastructure.dll
+C:\projects\silberscarves\SilberScarves\bin\Newtonsoft.Json.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Helpers.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Mvc.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Optimization.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Razor.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Deployment.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.dll
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Razor.dll
+C:\projects\silberscarves\SilberScarves\bin\WebGrease.dll
+C:\projects\silberscarves\SilberScarves\bin\EntityFramework.xml
+C:\projects\silberscarves\SilberScarves\bin\EntityFramework.SqlServer.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Helpers.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Mvc.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Optimization.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.Razor.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Deployment.xml
+C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Razor.xml
+C:\projects\silberscarves\SilberScarves\bin\Newtonsoft.Json.xml
+C:\projects\silberscarves\SilberScarves\bin\Antlr3.Runtime.pdb
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.csprojResolveAssemblyReference.cache
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.InitialCreate.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.AddUsernamePasswordToCustomer.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.AddAdministratorTable.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.adminTable.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addIsAdminToCustomer.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.removeorder.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.removeordersagain.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.notsurewhatchanged.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.lopl.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addforeignKeytocusteomr.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addUserandroles.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.rolesandusers.resources
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.csproj.GenerateResource.Cache
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.dll
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.pdb

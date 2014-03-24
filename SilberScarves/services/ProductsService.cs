@@ -85,6 +85,17 @@ namespace SilberScarves.services
             return _scarfRepo.getById(scarfId);
         }
 
+        public void deleteScarf(long scarfId)
+        {
+            ScarfItem s = getScarf(scarfId);
+            _scarfRepo.delete(s);
+        }
+
+        public void updateScarf(ScarfItem scarf)
+        {
+            _scarfRepo.update(scarf);
+        }
+
         public void addOrder(ScarfOrder order)
         {
             _orderRepo.add(order);

@@ -5,7 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (ViewBag.Error != null)
+    {
+<div class="alert alert-danger">
+    <strong> Warning! </strong> @ViewBag.Error
+</div>
+    }
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -35,8 +40,7 @@
             @Html.DisplayFor(modelItem => item.price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.scarfId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.scarfId }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.scarfId }) |           
             @Html.ActionLink("Delete", "Delete", new { id=item.scarfId })
         </td>
     </tr>

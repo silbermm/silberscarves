@@ -158,7 +158,7 @@ namespace SilberScarves.Controllers
 
         private Customer getCurrentUser()
         {
-            Customer cust = null;
+            
             if (this.HttpContext.User.Identity.IsAuthenticated)
             {
                 return service.findCustomerByUsername(this.HttpContext.User.Identity.Name);
