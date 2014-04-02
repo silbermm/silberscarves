@@ -21,7 +21,8 @@ namespace SilberScarves.Models
         public String name { get; set; }
         public String description { get; set; }
         public decimal price { get; set; }
-
+        public bool isFeatured { get; set; }
+   
         public virtual ICollection<ScarfOrder> orders { get; set; }
 
     }

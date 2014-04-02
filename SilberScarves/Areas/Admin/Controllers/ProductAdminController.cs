@@ -27,7 +27,7 @@ namespace SilberScarves.Areas.Admin.Controllers
 
         [HttpPost]
         [Authorize(Roles="admin")]
-        public ActionResult Create(String name, String description, String price)
+        public ActionResult Create(String name, String description, String price, bool isFeatured = false)
         {     
                 ScarfItem scarf = new ScarfItem();
 
@@ -67,6 +67,7 @@ namespace SilberScarves.Areas.Admin.Controllers
                         error = true;
                     }
                 }
+                scarf.isFeatured = isFeatured;
                 if (error)
                 {
                     ViewBag.Error = "Please fill out all required fields";
@@ -117,10 +118,10 @@ namespace SilberScarves.Areas.Admin.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(long id, String name, String description, String price)
+        public ActionResult Edit(long id, String name, String description, String price, bool isFeatured = false)
         {
             var scarf = service.getScarf(id);
-
+            scarf.isFeatured = isFeatured;
             bool error = false;
             if (name == null || name.Equals(""))
             {

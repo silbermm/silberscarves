@@ -25,6 +25,9 @@
         <th>
             @Html.DisplayNameFor(model => model.price)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isFeatured)
+        </th>
         <th></th>
     </tr>
 
@@ -38,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isFeatured)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.scarfId }) |           

@@ -151,6 +151,9 @@
     <EmbeddedResource Include="Migrations\201403102333312_rolesandusers.resx">
       <DependentUpon>201403102333312_rolesandusers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403291641513_add isFeatured to scarf.resx">
+      <DependentUpon>201403291641513_add isFeatured to scarf.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -188,6 +191,10 @@
     <Compile Include="Migrations\201403102333312_rolesandusers.cs" />
     <Compile Include="Migrations\201403102333312_rolesandusers.Designer.cs">
       <DependentUpon>201403102333312_rolesandusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403291641513_add isFeatured to scarf.cs" />
+    <Compile Include="Migrations\201403291641513_add isFeatured to scarf.Designer.cs">
+      <DependentUpon>201403291641513_add isFeatured to scarf.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Error.cs" />
     <Compile Include="Controllers\PublicController.cs" />
@@ -558,6 +565,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Customer\Cart.cshtml" />
+    <Content Include="Views\Products\Scarf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

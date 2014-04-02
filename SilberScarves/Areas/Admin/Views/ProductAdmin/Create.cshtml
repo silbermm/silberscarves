@@ -34,6 +34,12 @@
             @Html.TextBoxFor(m => m.price, new { @class = "form-control", @placeholder = "Price of the Scarf", @id = "scarfPrice" })
         </div>
     </div>
+    
+    <div class="@(ViewBag.ErrorFeatured != null ? "checkbox has-error": "checkbox")  ">
+        <label for="scarfFeatured">
+            @Html.CheckBoxFor(m => m.isFeatured, new { @id = "scarfFeatured" })  Feature?         
+        </label>
+    </div>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

@@ -1,4 +1,5 @@
-﻿using SilberScarves.Models;
+﻿using Antlr.Runtime;
+using SilberScarves.Models;
 using SilberScarves.Models.Repository;
 using SilberScarves.services;
 using System;
@@ -27,6 +28,20 @@ namespace SilberScarves.Controllers
             ScarfOrder s = service.getCustomerCart(customer);           
             CandP.Cart = s;
             CandP.Scarves = scarves;
+            return View(CandP);
+        }
+
+        [HttpGet]
+        public ActionResult Scarf(int id)
+        {
+            Customer customer = getCurrentUser();
+            ScarfItem scarf = service.getScarf(id);     
+            var CandP = new CustomerAndProducts();
+            CandP.Customer = customer;
+            ScarfOrder s = service.getCustomerCart(customer);
+            CandP.Cart = s;
+            CandP.Scarves = new ScarfItem[]{scarf};
+            
             return View(CandP);
         }
 

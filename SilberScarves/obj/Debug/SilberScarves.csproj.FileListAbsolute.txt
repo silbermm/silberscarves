@@ -153,3 +153,4 @@ C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.roles
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.csproj.GenerateResource.Cache
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.dll
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.pdb
+C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.addisFeaturedtoscarf.resources

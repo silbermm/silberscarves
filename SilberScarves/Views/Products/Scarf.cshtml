@@ -1,0 +1,68 @@
+﻿@model SilberScarves.Models.CustomerAndProducts
+
+@{
+    ViewBag.Title = "Scarf";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="pull-left"> @Model.Scarves.ElementAt(0).name </h2>
+    </div>
+    <div class="col-md-4">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div class="container">
+                <ul class="list-inline pull-right">
+                    <li>
+                        <a href="/customer/cart">
+                            <span class="glyphicon glyphicon-shopping-cart"> </span>
+                            <span class="badge">  @Html.Raw(Model.Cart.Scarves.Count) </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <h4>ScarfItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Scarves.ElementAt(0).name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scarves.ElementAt(0).name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scarves.ElementAt(0).description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scarves.ElementAt(0).description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scarves.ElementAt(0).price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scarves.ElementAt(0).price)
+        </dd>
+
+        <dt>
+            @using (Html.BeginForm("Index", "Products"))
+            {
+                <input type="hidden" name="scarfId" value="@Model.Scarves.ElementAt(0).scarfId" />
+                <!-- <button data-ng-click="addToCart('@Model.Scarves.ElementAt(0).scarfId', '@Model.Scarves.ElementAt(0).name', '@Model.Scarves.ElementAt(0).description', '@Model.Scarves.ElementAt(0).price', 1)" class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>  -->
+                <button class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+            }
+        </dt>
+    </dl>
+</div>
+<br/>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>

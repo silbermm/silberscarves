@@ -45,6 +45,12 @@
                 @Html.ValidationMessageFor(model => model.price)
             </div>
         </div>
+        
+        <div class="checkbox">
+            <label for="scarfFeatured">
+                @Html.CheckBoxFor(m => m.isFeatured, new { @id = "scarfFeatured" })  Feature?
+            </label>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
