@@ -566,6 +566,7 @@
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Customer\Cart.cshtml" />
     <Content Include="Views\Products\Scarf.cshtml" />
+    <Content Include="Views\Customer\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

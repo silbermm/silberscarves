@@ -43,7 +43,23 @@ namespace SilberScarves.Controllers
 
         [Authorize]
         public ActionResult Checkout() {
-            return View();
+            var order = productService.getCustomerCart(getCurrentUser());
+            return View(order);
+        }
+
+        private Customer getCurrentUser()
+        {
+
+            if (this.HttpContext.User.Identity.IsAuthenticated)
+            {
+                return productService.findCustomerByUsername(this.HttpContext.User.Identity.Name);
+            }
+            else
+            {
+                return null;
+            }
+
+
         }
 
 	}
