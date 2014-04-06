@@ -1,0 +1,43 @@
+﻿@model SilberScarves.Models.Customer
+
+@{
+    ViewBag.Title = "ConfirmAddress";
+}
+
+<h2>Confirm Shipping Address</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Street Address: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address.buildingNumber) @Html.DisplayFor(model => model.address.street)
+        </dd>
+
+        <dt>
+           City, State Zip:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address.city), @Html.DisplayFor(model => model.address.stateCode) @Html.DisplayFor(model => model.address.zipCode)
+        </dd>
+
+        <dt>
+            Phone:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Fix Address", "FixAddress", new { area = "" }, new { @class = "" })
+    @Html.ActionLink("Confirm", "ConfirmAddress", new {area = ""}, new {@class = "btn btn-primary"})
+    
+
+</p>

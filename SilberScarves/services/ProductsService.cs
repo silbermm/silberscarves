@@ -14,6 +14,7 @@ namespace SilberScarves.services
         private Repository<ScarfItem> _scarfRepo;
         private Repository<Customer> _custRepo;
         private OrderRepository _orderRepo;
+        private AddressRepository _addrRepo;
 
 
         public ProductsService()
@@ -22,6 +23,7 @@ namespace SilberScarves.services
             _scarfRepo = new ScarfItemRepository(_context);
             _custRepo = new CustomerRepository(_context);
             _orderRepo = new OrderRepository(_context);
+            _addrRepo = new AddressRepository(_context);
 
         }
 
@@ -113,7 +115,9 @@ namespace SilberScarves.services
 
         public Customer findCustomerByUsername(String customerName)
         {
-            return _custRepo.getAll().Where(c => c.username == customerName).FirstOrDefault();
+            Customer cust = _custRepo.getAll().Where(c => c.username == customerName).FirstOrDefault();
+            cust.address = _addrRepo.getById(cust.addressId);
+            return cust;
         }
 
         public ScarfOrder EmptyCart(Customer customer = null)

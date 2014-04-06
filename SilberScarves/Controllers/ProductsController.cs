@@ -1,4 +1,5 @@
-﻿using Antlr.Runtime;
+﻿using System.EnterpriseServices;
+using Antlr.Runtime;
 using SilberScarves.Models;
 using SilberScarves.Models.Repository;
 using SilberScarves.services;
@@ -130,11 +131,7 @@ namespace SilberScarves.Controllers
             {
                 TempData["GlobalError"] = "You are not Authorized to access the requested page";
                 return RedirectToAction("Index", "Home");
-            }
-
-
-            
-
+            }            
         }
 
         [HttpPost]
@@ -169,7 +166,41 @@ namespace SilberScarves.Controllers
             CandP.Cart = currentCart;
             return View(CandP);
         }
- 
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Checkout()
+        {
+            Customer c = getCurrentUser();
+            ScarfOrder order = service.getCustomerCart(c);
+
+            if (order == null)
+            {
+                TempData["GlobalError"] = "Your currently don't have any carts to checkout";
+                return View("Index");
+            }
+
+            if (order.hasBeenPaidFor || order.hasShipped)
+            {
+                TempData["GlobalError"]="This order is already shipped";
+            }
+
+            // Confirm Shipping address
+            return View("ConfirmAddress", c);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult ConfirmAddress()
+        {
+            Customer c = getCurrentUser();
+            ScarfOrder order = service.getCustomerCart(c);
+            ViewBag.TotalCost = (Double) order.Scarves.Sum(s => s.price);
+            order.hasBeenPaidFor = true;
+            order.isCart = false;
+            service.updateOrder(order);
+            return View("Checkout");
+        }
 
         private Customer getCurrentUser()
         {

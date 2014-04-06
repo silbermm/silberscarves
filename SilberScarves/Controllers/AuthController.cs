@@ -1,4 +1,5 @@
-﻿using SilberScarves.Models;
+﻿using System.Web.Routing;
+using SilberScarves.Models;
 using SilberScarves.services;
 using System;
 using System.Collections.Generic;
@@ -35,14 +36,8 @@ namespace SilberScarves.Controllers
            {
                if (user.Password == password)
                {
-                   FormsAuthentication.SetAuthCookie(username, false);
-                   if (user.Roles.Where(r => r.Name == "admin").FirstOrDefault() != null)
-                   {
-                       return RedirectToAction("Index", "Home", new { Area = "Admin" });
-                   }
-
-                   
-                   return RedirectToAction("Index", "Public");
+                   FormsAuthentication.SetAuthCookie(username, false);                                
+                   return RedirectToAction("Index", "Public", new {area = ""});
                }
                else
                {
