@@ -24,7 +24,7 @@ namespace SilberScarves.Models.Repository
 
         public IEnumerable<ScarfOrder> getAll()
         {
-            return context.Orders;
+            return context.Orders.Include("Customer");
         }
 
         public ScarfOrder getById(long id)
@@ -53,7 +53,8 @@ namespace SilberScarves.Models.Repository
 
         public ScarfOrder getCustomerCart(Customer customer)
         {
-            ScarfOrder order = context.Orders.Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();         
+            ScarfOrder order = context.Orders.Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();  
+            
             return order;
             
         }

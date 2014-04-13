@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SilberScarves.Repositories;
 
 namespace SilberScarves.services
 {
@@ -15,7 +16,7 @@ namespace SilberScarves.services
         private Repository<Customer> _custRepo;
         private OrderRepository _orderRepo;
         private AddressRepository _addrRepo;
-
+      
 
         public ProductsService()
         {
@@ -24,7 +25,19 @@ namespace SilberScarves.services
             _custRepo = new CustomerRepository(_context);
             _orderRepo = new OrderRepository(_context);
             _addrRepo = new AddressRepository(_context);
+            
 
+        }
+
+        public List<ScarfOrder> getCheckedOutOrders()
+        {
+            
+            return _orderRepo.getAll().Where(o => o.isCart == false).ToList();
+        }
+
+        public ScarfOrder getOrder(long id)
+        {
+            return _orderRepo.getById(id);
         }
 
         public ScarfOrder getCustomerCart(Customer customer){

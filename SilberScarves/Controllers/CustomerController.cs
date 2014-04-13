@@ -47,6 +47,23 @@ namespace SilberScarves.Controllers
             return View(order);
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult FixAddress(Address address)
+        {
+            Customer c = getCurrentUser();
+            c.address = address;
+            accountService.updateAddress(address);
+            return RedirectToAction("Checkout", "Products");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult FixAddress()
+        {
+            return View(getCurrentUser().address);
+        }
+
         private Customer getCurrentUser()
         {
 

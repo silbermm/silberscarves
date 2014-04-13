@@ -33,6 +33,16 @@ namespace SilberScarves.services
             this._addressRepository = new AddressRepository(context);
         }
 
+        public void updateCustomer(Customer c)
+        {
+            _customerRepository.update(c);
+        }
+
+        public void updateAddress(Address a)
+        {
+            _addressRepository.update(a);
+        }
+
         public Customer findCustomer(String username)
         {
             return _customerRepository.getAll().Where(c => c.username == username).FirstOrDefault();

@@ -30,7 +30,9 @@
                                 <li>
                                     @Html.ActionLink("Inventory", "Index", "ProductAdmin", new { area = "admin" }, null)
                                 </li> 
-                                <li><a href="#">Pending Orders</a></li>
+                                <li>
+                                    @Html.ActionLink("Pending Orders", "Index", "OrderAdmin", new {area = "admin"}, null)                                   
+                                </li>
                                 
                                 <li><a href="#">User Administration</a></li>
                                 <li class="divider"></li>

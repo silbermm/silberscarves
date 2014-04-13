@@ -202,6 +202,8 @@ namespace SilberScarves.Controllers
             return View("Checkout");
         }
 
+       
+
         private Customer getCurrentUser()
         {
             
