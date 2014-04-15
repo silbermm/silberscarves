@@ -35,7 +35,13 @@ namespace SilberScarves.Areas.Admin.Controllers
         public ActionResult Details(long id)
         {
             ScarfOrder s = _productService.getOrder(id);
+            ViewBag.OrderId = id;
             return View(s.Scarves);
+        }
+
+        public ActionResult Ship(long id)
+        {
+            return View();
         }
     
     }

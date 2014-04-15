@@ -32,7 +32,7 @@
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.Order.orderId }) |
-            @Html.ActionLink("Ship", "ShipOrder", new{ id=item.Order.orderId}, new{@class = "btn btn-primary"})
+            @Html.ActionLink("Ship", "Ship", new{ id=item.Order.orderId}, null)
         </td>
     </tr>
 }

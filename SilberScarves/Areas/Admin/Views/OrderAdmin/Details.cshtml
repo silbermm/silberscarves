@@ -17,32 +17,31 @@
         <th>
             @Html.DisplayNameFor(model => model.price)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isFeatured)
-        </th>
-        <th></th>
+        
+        
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isFeatured)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.scarfId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.scarfId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.scarfId })
-        </td>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>   
+            
+        </tr>
+    }
+    <tr style="border-top:2px solid black">
+        <td><b> TOTAL: </b></td>
+        <td></td>
+        <td><b>  @Model.Sum(s => s.price) </b></td>        
+        
     </tr>
-}
-
 </table>
+
+@Html.ActionLink("Back to List", "Index", new {area = "admin"}) 
+@Html.ActionLink("Ship", "Ship", new{area="admin", id=ViewBag.OrderId})
