@@ -9,6 +9,7 @@ using SilberScarves.Models;
 
 namespace SilberScarves.Areas.Admin.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class OrderAdminController : Controller
     {
         
@@ -41,7 +42,12 @@ namespace SilberScarves.Areas.Admin.Controllers
 
         public ActionResult Ship(long id)
         {
-            return View();
+            
+            ScarfOrder order = _productService.getOrder(id);
+            order.hasShipped = true; 
+            _productService.updateOrder(order);
+            TempData["shipped"] = "Order id " + id + " has been flagged for shipping";
+            return RedirectToAction("Index");
         }
     
     }

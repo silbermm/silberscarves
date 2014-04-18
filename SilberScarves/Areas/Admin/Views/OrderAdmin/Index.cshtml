@@ -4,6 +4,13 @@
     ViewBag.Title = "Index";
 }
 
+@if (TempData["shipped"] != null)
+{
+    <div class="alert alert-info">
+        <strong> Info </strong> @TempData["shipped"]
+    </div>
+}
+
 <h2>Pending Orders</h2>
 <table class="table">
     <tr>

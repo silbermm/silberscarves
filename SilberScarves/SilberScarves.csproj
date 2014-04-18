@@ -575,6 +575,7 @@
     <Content Include="Views\Products\ConfirmAddress.cshtml" />
     <Content Include="Views\Products\Checkout.cshtml" />
     <Content Include="Views\Customer\FixAddress.cshtml" />
+    <Content Include="Views\Products\History.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

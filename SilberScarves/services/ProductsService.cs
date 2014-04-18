@@ -24,15 +24,27 @@ namespace SilberScarves.services
             _scarfRepo = new ScarfItemRepository(_context);
             _custRepo = new CustomerRepository(_context);
             _orderRepo = new OrderRepository(_context);
-            _addrRepo = new AddressRepository(_context);
-            
+            _addrRepo = new AddressRepository(_context);   
+        }
 
+        public void shipOrder(long orderId)
+        {
+           ScarfOrder o =  _orderRepo.getById(orderId);
+            o.hasShipped = true;
+            _orderRepo.update(o);
+        }
+
+        public IEnumerable<ScarfOrder> getCustomerOrderHistory(Customer c)
+        {
+            List<ScarfOrder> orders =
+                _orderRepo.getAll().Where(order => order.customer == c ).ToList();
+            return orders;
         }
 
         public List<ScarfOrder> getCheckedOutOrders()
         {
             
-            return _orderRepo.getAll().Where(o => o.isCart == false).ToList();
+            return _orderRepo.getAll().Where(o => o.isCart == false && o.hasShipped == false).ToList();
         }
 
         public ScarfOrder getOrder(long id)

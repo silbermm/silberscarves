@@ -134,6 +134,14 @@ namespace SilberScarves.Controllers
             }            
         }
 
+        [Authorize]
+        public ActionResult History()
+        {
+            Customer currentUser = getCurrentUser();
+            IEnumerable<ScarfOrder> orderHistory = service.getCustomerOrderHistory(currentUser);
+            return View(orderHistory);
+        }
+
         [HttpPost]
         public ActionResult Index(long scarfId)
         {
