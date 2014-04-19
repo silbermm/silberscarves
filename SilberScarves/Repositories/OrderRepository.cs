@@ -53,7 +53,7 @@ namespace SilberScarves.Models.Repository
 
         public ScarfOrder getCustomerCart(Customer customer)
         {
-            ScarfOrder order = context.Orders.Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();  
+            ScarfOrder order = context.Orders.Include("customer").Where(o => o.customer.customerId == customer.customerId && o.isCart).FirstOrDefault();  
             return order;
             
         }

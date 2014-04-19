@@ -1,45 +1,38 @@
-﻿@model IEnumerable<SilberScarves.Models.ScarfOrder>
+﻿@using System.Data
+@using WebGrease
+@model IEnumerable<SilberScarves.Models.ScarfOrder>
 
 @{
     ViewBag.Title = "History";
 }
 
-<h2>History</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.isCart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hasShipped)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hasBeenPaidFor)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.isCart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hasShipped)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hasBeenPaidFor)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.orderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.orderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.orderId })
-        </td>
-    </tr>
+<h2> Order History</h2>
+@foreach (var item in Model)
+{
+    <div class="col-md-4"><h4> <b> Order ID: @item.orderId </b> </h4> </div> 
+    <div class="col-md-4 col-md-offset-4">
+        <span class="pull-right">
+            <b> Total: $@item.Scarves.Sum(o => o.price) </b> 
+            @if (item.hasShipped)
+            {
+                <span class="label label-success">Shipped! </span>
+            }
+            else
+            {
+                <span class="label label-danger">Not Shipped Yet</span>
+            }                           
+                                          
+        </span> 
+    </div>      
+    <table class="table">              
+        @foreach (var scarf in item.Scarves)
+        {
+            <tr>
+                <td>@Html.ActionLink(@scarf.name, "Scarf", "Products", new {area = "", id = @scarf.scarfId}, new {})</td>
+                <td>$@scarf.price</td>
+                <td>1</td>
+            </tr>
+        }
+    </table>
 }
-
-</table>
+ 

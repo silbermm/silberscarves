@@ -37,7 +37,7 @@ namespace SilberScarves.services
         public IEnumerable<ScarfOrder> getCustomerOrderHistory(Customer c)
         {
             List<ScarfOrder> orders =
-                _orderRepo.getAll().Where(order => order.customer == c ).ToList();
+                _orderRepo.getAll().Where(order => order.customer == c && order.isCart == false ).ToList();            
             return orders;
         }
 
