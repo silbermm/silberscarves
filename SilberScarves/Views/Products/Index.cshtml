@@ -35,7 +35,7 @@
 </div>
     }
 
-<div class="row" data-ng-controller="ProductsCtrl">
+<div class="row" >
     @if (HttpContext.Current.User.Identity.IsAuthenticated && @Model.Customer.isAdmin)
     {
         @Html.ActionLink("Create a new Scarf", "Create", "Products"); <br />
@@ -55,8 +55,7 @@
             <div class="panel-footer">
                 @using (Html.BeginForm()) { 
                     
-                    <input type="hidden" name="scarfId" value="@item.scarfId" />
-                   <!-- <button data-ng-click="addToCart('@item.scarfId', '@item.name', '@item.description', '@item.price', 1)" class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>  -->
+                    <input type="hidden" name="scarfId" value="@item.scarfId" />                  
                     <button class="btn btn-sm" type="submit"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
                     <span class="pull-right"> $@item.price </span>
                 }

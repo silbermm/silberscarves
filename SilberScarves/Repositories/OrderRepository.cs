@@ -24,7 +24,7 @@ namespace SilberScarves.Models.Repository
 
         public IEnumerable<ScarfOrder> getAll()
         {
-            return context.Orders.Include("Customer");
+            return context.Orders.Include("Customer").ToList();
         }
 
         public ScarfOrder getById(long id)

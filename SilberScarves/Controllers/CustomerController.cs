@@ -48,6 +48,15 @@ namespace SilberScarves.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public ActionResult RemoveFromCart(long id)
+        {
+            Customer c = getCurrentUser();
+            productService.RemoveFromCart(c, id);
+            return RedirectToAction("Cart");
+        }
+
+        [Authorize]
         [HttpPost]
         public ActionResult FixAddress(Address address)
         {

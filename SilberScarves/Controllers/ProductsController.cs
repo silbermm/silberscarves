@@ -175,6 +175,8 @@ namespace SilberScarves.Controllers
             return View(CandP);
         }
 
+        
+
         [HttpGet]
         [Authorize]
         public ActionResult Checkout()

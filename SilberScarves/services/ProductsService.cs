@@ -52,6 +52,21 @@ namespace SilberScarves.services
             return _orderRepo.getById(id);
         }
 
+        public void RemoveFromCart(Customer c, long id)
+        {
+            ScarfOrder s = _orderRepo.getCustomerCart(c);
+            List<ScarfItem> newScarves = new List<ScarfItem>();
+            foreach (var scarf in s.Scarves)
+            {
+                if (scarf.scarfId != id)
+                {
+                    newScarves.Add(scarf);
+                }
+            }
+            s.Scarves = newScarves;
+            _orderRepo.update(s);
+        }
+
         public ScarfOrder getCustomerCart(Customer customer){
             ScarfOrder s;
 
