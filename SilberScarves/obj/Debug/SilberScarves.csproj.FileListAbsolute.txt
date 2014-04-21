@@ -136,7 +136,6 @@ C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.xml
 C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Deployment.xml
 C:\projects\silberscarves\SilberScarves\bin\System.Web.WebPages.Razor.xml
 C:\projects\silberscarves\SilberScarves\bin\Newtonsoft.Json.xml
-C:\projects\silberscarves\SilberScarves\bin\Antlr3.Runtime.pdb
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.csprojResolveAssemblyReference.cache
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.InitialCreate.resources
 C:\projects\silberscarves\SilberScarves\obj\Debug\SilberScarves.Migrations.AddUsernamePasswordToCustomer.resources
